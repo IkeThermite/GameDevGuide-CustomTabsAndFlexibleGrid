@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Don't commit third-party assets
+/[Aa]ssets/Third Party/
+
