@@ -35,8 +35,21 @@ public class FlexibleGridLayout : LayoutGroup
         if (fitType == FitType.WIDTH || fitType == FitType.HEIGHT || fitType == FitType.UNIFORM)
         {
             float squareRoot = Mathf.Sqrt(transform.childCount);
-            rows = Mathf.CeilToInt(squareRoot);
-            columns = Mathf.CeilToInt(squareRoot);
+            rows = columns = Mathf.CeilToInt(squareRoot);
+            switch (fitType)
+            {
+                case FitType.Width:
+                    fitX = true;
+                    fitY = false;
+                    break;
+                case FitType.Height:
+                    fitX = false;
+                    fitY = true;
+                    break;
+                case FitType.Uniform:
+                    fitX = fitY = true;
+                    break;
+            }
         }
 
         if (fitType == FitType.WIDTH || fitType == FitType.FIXEDCOLUMNS)
