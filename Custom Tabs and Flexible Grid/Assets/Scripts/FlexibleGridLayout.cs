@@ -25,8 +25,8 @@ public class FlexibleGridLayout : LayoutGroup
     public Vector2 cellSize;
     public Vector2 spacing;
 
-    bool fitX;
-    bool fitY;
+    public bool fitX;
+    public bool fitY;
 
     public override void CalculateLayoutInputHorizontal()
     {
@@ -34,11 +34,22 @@ public class FlexibleGridLayout : LayoutGroup
 
         if (fitType == FitType.WIDTH || fitType == FitType.HEIGHT || fitType == FitType.UNIFORM)
         {
-            fitX = true;
-            fitY = true;
             float squareRoot = Mathf.Sqrt(transform.childCount);
-            rows = Mathf.CeilToInt(squareRoot);
-            columns = Mathf.CeilToInt(squareRoot);
+            rows = columns = Mathf.CeilToInt(squareRoot);
+            switch (fitType)
+            {
+                case FitType.Width:
+                    fitX = true;
+                    fitY = false;
+                    break;
+                case FitType.Height:
+                    fitX = false;
+                    fitY = true;
+                    break;
+                case FitType.Uniform:
+                    fitX = fitY = true;
+                    break;
+            }
         }
 
         if (fitType == FitType.WIDTH || fitType == FitType.FIXEDCOLUMNS)
