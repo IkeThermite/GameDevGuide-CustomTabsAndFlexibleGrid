@@ -38,15 +38,15 @@ public class FlexibleGridLayout : LayoutGroup
             rows = columns = Mathf.CeilToInt(squareRoot);
             switch (fitType)
             {
-                case FitType.Width:
+                case FitType.WIDTH:
                     fitX = true;
                     fitY = false;
                     break;
-                case FitType.Height:
+                case FitType.HEIGHT:
                     fitX = false;
                     fitY = true;
                     break;
-                case FitType.Uniform:
+                case FitType.UNIFORM:
                     fitX = fitY = true;
                     break;
             }
